@@ -8,6 +8,8 @@ import com.xkcoding.task.quartz.common.ApiResponse;
 import com.xkcoding.task.quartz.entity.domain.JobAndTrigger;
 import com.xkcoding.task.quartz.entity.form.JobForm;
 import com.xkcoding.task.quartz.service.JobService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/job")
 @Slf4j
+@Api(tags = "job管理")
 public class JobController {
     private final JobService jobService;
 
@@ -40,6 +43,7 @@ public class JobController {
      * 保存定时任务
      */
     @PostMapping
+    @ApiOperation(value = "保存定时任务", notes = "保存定时任务接口")
     public ResponseEntity<ApiResponse> addJob(@Valid JobForm form) {
         try {
             jobService.addJob(form);
